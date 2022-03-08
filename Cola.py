@@ -1,4 +1,5 @@
 from NodoOrden import NodoOrden
+from ListaEntregados import ListaEntregados
 class Cola():
     def __init__(self):
         self.primero = None
@@ -28,17 +29,20 @@ class Cola():
             aux = self.primero
             self.primero = self.ultimo = None
             self.tamanio -= 1
+            aux.siguiente = None
             return aux
         elif self.tamanio == 2:
             aux = self.primero
             self.primero = self.ultimo
             self.primero.siguiente = None
             self.tamanio -= 1
+            aux.siguiente = None
             return aux
         else:
             aux = self.primero
             self.primero = self.primero.siguiente
             self.tamanio -= 1
+            aux.siguiente = None
             return aux
 
     def MostrarCola(self):
@@ -50,10 +54,11 @@ class Cola():
     def __len__(self):
         return self.tamanio
 
-'''
 
-PRUEBAS CON LA COLA
+'''
+#PRUEBAS CON LA COLA
 C = Cola()
+L = ListaEntregados()
 print('ENCOLANDO')
 print('----------------------------------')
 C.Encolar(1,'Rodri')
@@ -68,13 +73,8 @@ C.Encolar(3,'Diego')
 #C.MostrarCola()
 print('Tamaño de la Cola: ' + str(len(C)))
 print('DESENCOLANDO')
-print('Salió: ' + str(C.Desencolar().numero))
-print('Tamaño de la Cola: ' + str(len(C)))
-print('----------------------------------')
-print('Salió: ' + str(C.Desencolar().numero))
-print('Tamaño de la Cola: ' + str(len(C)))
-print('----------------------------------')
-print('Salió: ' + str(C.Desencolar().numero))
-print('Tamaño de la Cola: ' + str(len(C)))
-
+L.AgregarEntregados(C.Desencolar())
+L.AgregarEntregados(C.Desencolar())
+L.AgregarEntregados(C.Desencolar())
+L.MostrarEntregados()
 '''
