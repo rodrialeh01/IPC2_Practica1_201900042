@@ -11,11 +11,13 @@ class ListaEntregados():
         if self.Vacio():
             self.primero = self.ultimo = pedido
         elif self.primero == self.ultimo:
-            self.ultimo = pedido
+            self.primero = pedido
             self.primero.siguiente = self.ultimo
         else:
-            self.ultimo.siguiente = pedido
-            self.ultimo = pedido
+            aux = self.primero
+            self.primero = pedido
+            self.primero.siguiente = aux
+            
         self.tamanio += 1
 
     def MostrarEntregados(self):
@@ -23,7 +25,8 @@ class ListaEntregados():
         print('=======================================')
         print('==           ENTREGADOS:             ==')
         while(actual != None):
-            print('Id: ' + str(actual.numero))
+            print('Orden No.' + str(actual.numero))
+            print('Nombre del Cliente: ' + str(actual.nombre))
             actual = actual.siguiente
 
     def __len__(self):
