@@ -5,6 +5,3 @@ class NodoOrden():
         self.nombre = nombre
         self.pizzas = ListaPizza()
         self.siguiente = None
-
-    def AgregarPizzas(self, numero, ingrediente, tiempo):
-        self.pizzas.InsertarPizza()

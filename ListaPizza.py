@@ -23,9 +23,19 @@ class ListaPizza():
     def MostrarPizzas(self):
         actual = self.primero
         while(actual != None):
+            print('****************************************')
             print('==           PIZZA No.' + str(actual.numero) + '          ==')
             print('== Ingrediente: ' + str(actual.ingrediente))
             print('== Tiempo: ' + str(actual.tiempo))
+            actual = actual.siguiente
     
+    def TiempoTotal(self):
+        t = 0
+        actual = self.primero
+        while(actual != None):
+            t += int(actual.tiempo)
+            actual = actual.siguiente
+        return t
+
     def __len__(self):
         return self.tamanio

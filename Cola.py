@@ -47,9 +47,23 @@ class Cola():
 
     def MostrarCola(self):
         actual = self.primero
+        print('===========================================================')
+        print('==                LISTA DE PEDIDOS EN COLA               ==')
+        print('===========================================================')
         while actual != None:
             print('ID: ' + str(actual.numero))
+            print('Nombre del Cliente: ' + str(actual.nombre))
+            actual.pizzas.MostrarPizzas()
+            print('Tiempo Total de Preparación: ' + str(actual.pizzas.TiempoTotal()))
+            print('-----------------------------------------------------------')
             actual = actual.siguiente
+
+    def TiempoTotal(self):
+        t = 0
+        actual = self.primero
+        while(actual != None):
+            t+= int(actual.pizzas.TiempoTotal())
+        return t
 
     def __len__(self):
         return self.tamanio
