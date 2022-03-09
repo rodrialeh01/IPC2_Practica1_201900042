@@ -1,5 +1,6 @@
 from NodoOrden import NodoOrden
 from ListaEntregados import ListaEntregados
+import os
 class Cola():
     def __init__(self):
         self.primero = None
@@ -64,6 +65,34 @@ class Cola():
         while(actual != None):
             t+= int(actual.pizzas.TiempoTotal())
         return t
+
+    def graficar(self):
+        contenido = ''
+        file = open('Graficas/Orden_No.'+str(self.ultimo.numero)+'.dot','w')
+        actual = self.primero
+        contenido += '''digraph G {
+    rankdir=LR;
+    node [shape="record"];'''
+        if self.tamanio == 1:
+            contenido += str(self.primero.numero) + '''[style="filled", color="black", fillcolor="darkolivegreen1"];'''+ str(self.primero.numero) + '[label="El pedido generado se encuentra en esta posición de la cola\\nSe esta atendiendo actualmente a: \\nNo. Orden '+str(self.primero.numero )+ '\\n Nombre: ' + str(self.primero.nombre) + '"]\n'
+        else:
+            contenido += str(self.ultimo.numero) + '''[style="filled", color="black", fillcolor="skyblue"];'''
+            contenido += str(self.primero.numero) + '''[style="filled", color="black", fillcolor="darkolivegreen1"];'''
+            while(actual != None):
+                contenido += str(actual.numero) + '[label="No. Orden '+str(actual.numero) + '\\n Nombre: ' + str(actual.nombre) + '"]\n'
+                if actual == self.primero:
+                    contenido += str(self.primero.numero) + '[label="Se esta atendiendo actualmente a: \\nNo. Orden '+str(self.primero.numero )+ '\\n Nombre: ' + str(self.primero.nombre) + '"]\n'
+                    contenido += str(actual.siguiente.numero) + '->' + str(actual.numero) + '\n'
+                elif actual.siguiente == None:
+                    contenido += str(self.ultimo.numero) + '[label="El pedido generado se encuentra en esta posición de la cola \\nNo. Orden '+str(self.ultimo.numero )+ '\\n Nombre: ' + str(self.ultimo.nombre) + '"]\n'
+                else:
+                    contenido += str(actual.siguiente.numero) + '->' + str(actual.numero) + '\n'
+                actual = actual.siguiente
+        contenido += '}'
+        file.write(contenido)
+        file.close()
+        os.system('dot -Tpng Graficas/Orden_No.'+str(self.ultimo.numero)+'.dot -o Orden_No.'+str(self.ultimo.numero)+'.png')
+        os.startfile('Orden_No.'+str(self.ultimo.numero)+'.png')
 
     def __len__(self):
         return self.tamanio

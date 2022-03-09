@@ -36,6 +36,7 @@ def AgregarOrden(c):
                 contador += 1
             else:
                 print('\n== OPCION INVALIDA :c                                    ==')
+        Cola_de_Pedidos.graficar()
     except:
         print('== HUBO UN ERROR :c                                      ==')
 
