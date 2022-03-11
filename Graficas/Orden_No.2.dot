@@ -1,8 +1,0 @@
-digraph G {
-    rankdir=LR;
-    node [shape="record"];2[style="filled", color="black", fillcolor="skyblue"];1[style="filled", color="black", fillcolor="darkolivegreen1"];1[label="No. Orden 1\n Nombre: Pepe"]
-1[label="Se esta atendiendo actualmente a: \nNo. Orden 1\n Nombre: Pepe"]
-2->1
-2[label="No. Orden 2\n Nombre: Ale"]
-2[label="El pedido generado se encuentra en esta posición de la cola \nNo. Orden 2\n Nombre: Ale"]
-}

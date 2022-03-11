@@ -93,6 +93,10 @@ def menu():
                     opcionP = str(input('== Ya va a entregar el pedido? ("Y" para Si/ "N" para No)==\n>'))
                     if opcionP == "Y":
                         Lista_Entregados.AgregarEntregados(Cola_de_Pedidos.Desencolar())
+                        if len(Cola_de_Pedidos) != 0:
+                            Cola_de_Pedidos.abrirorden()
+                        else:
+                            print('>>>>>>>>>>      YA NO HAS ORDENES EN COLA       <<<<<<<<<<<')
                     elif opcionP == "N":
                         print('')
                     else:
@@ -102,6 +106,15 @@ def menu():
                     print('>>>>>>>>>>        NO HAS ORDENES EN COLA        <<<<<<<<<<<')
                 else:
                     Cola_de_Pedidos.MostrarCola()
+                    print('TIEMPO TOTAL DE ESPERA EN LA COLA: ' + str(Cola_de_Pedidos.TiempoTotal()) + ' MINUTOS')
+                    if len(Cola_de_Pedidos)> 0:
+                        opcionT = str(input('== Quiere ver la grafica?      ("Y" para Si/ "N" para No)==\n>'))
+                        if opcionT == "Y":
+                            Cola_de_Pedidos.graficarlista()
+                        elif opcionT == "N":
+                            print('')
+                        else:
+                            print('\n== OPCION INVALIDA :c                                    ==')
             elif opcion == 4:
                 if len(Lista_Entregados) == 0:
                     print('>>>>>>>>>>       NO HAS ORDENES ENTREGADAS      <<<<<<<<<<<')
